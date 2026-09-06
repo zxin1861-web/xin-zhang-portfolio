@@ -1,4 +1,3 @@
-
 const $=(s,r=document)=>r.querySelector(s);
 const $$=(s,r=document)=>[...r.querySelectorAll(s)];
 
@@ -20,7 +19,7 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.targe
 $$(".reveal,.media-enter").forEach(el=>io.observe(el));
 
 /* home signal field + trail */
-$$("[data-signal-field]").forEach(field=>{
+$$('[data-signal-field]').forEach(field=>{
   const dot=$(".gaze-dot",field);
   let last=0;
   field.addEventListener("pointermove",e=>{
@@ -38,8 +37,8 @@ $$("[data-signal-field]").forEach(field=>{
 });
 
 /* lab tabs */
-$$("[data-lab]").forEach(lab=>{
-  const tabs=$$("[data-lab-tab]",lab),panels=$$("[data-lab-panel]",lab);
+$$('[data-lab]').forEach(lab=>{
+  const tabs=$$('[data-lab-tab]',lab),panels=$$('[data-lab-panel]',lab);
   tabs.forEach(tab=>tab.addEventListener("click",()=>{
     tabs.forEach(x=>x.classList.remove("active"));panels.forEach(x=>x.classList.remove("active"));
     tab.classList.add("active");$(`[data-lab-panel="${tab.dataset.labTab}"]`,lab)?.classList.add("active");
@@ -47,7 +46,7 @@ $$("[data-lab]").forEach(lab=>{
 });
 
 /* scene gaze pointer */
-$$("[data-scene-gaze]").forEach(scene=>{
+$$('[data-scene-gaze]').forEach(scene=>{
   const dot=$(".scene-gaze",scene);
   scene.addEventListener("pointermove",e=>{
     const r=scene.getBoundingClientRect();
@@ -56,15 +55,15 @@ $$("[data-scene-gaze]").forEach(scene=>{
 });
 
 /* dwell hotspots */
-$$("[data-dwell-scene]").forEach(scene=>{
+$$('[data-dwell-scene]').forEach(scene=>{
   const status=$("[data-dwell-status]",scene.closest(".lab-stage")||document);
-  $$("[data-hotspot]",scene).forEach(h=>{
+  $$('[data-hotspot]',scene).forEach(h=>{
     let raf,start,active=false;
     const reset=()=>{active=false;cancelAnimationFrame(raf);if(!h.classList.contains("selected"))h.style.setProperty("--p","0deg")};
     const tick=t=>{
       if(!active)return;if(!start)start=t;
       const p=Math.min(1,(t-start)/1300);h.style.setProperty("--p",`${p*360}deg`);
-      if(p>=1){active=false;$$("[data-hotspot]",scene).forEach(x=>x.classList.remove("selected"));h.classList.add("selected");if(status)status.textContent=h.dataset.label;return}
+      if(p>=1){active=false;$$('[data-hotspot]',scene).forEach(x=>x.classList.remove("selected"));h.classList.add("selected");if(status)status.textContent=h.dataset.label;return}
       raf=requestAnimationFrame(tick);
     };
     h.addEventListener("pointerenter",()=>{start=null;active=true;raf=requestAnimationFrame(tick)});
@@ -74,7 +73,7 @@ $$("[data-dwell-scene]").forEach(scene=>{
 });
 
 /* mindfulness drift */
-$$("[data-mind-scene]").forEach(scene=>{
+$$('[data-mind-scene]').forEach(scene=>{
   const fill=$(".drift-fill",scene),msg=$("[data-drift-text]",scene.closest(".lab-stage")||document);
   let timer=null,start=null,raf=null;
   const reset=()=>{clearTimeout(timer);cancelAnimationFrame(raf);timer=null;start=null;scene.classList.remove("cue");fill.style.width="0%";scene.style.setProperty("--vignette",".08");if(msg)msg.textContent="On anchor"};
@@ -93,7 +92,7 @@ $$("[data-mind-scene]").forEach(scene=>{
 });
 
 /* difficulty slider */
-$$("[data-diff-scene]").forEach(scene=>{
+$$('[data-diff-scene]').forEach(scene=>{
   const range=$("input[type=range]",scene),time=$("[data-diff-time]",scene.closest(".lab-stage")||document),dwell=$("[data-diff-dwell]",scene.closest(".lab-stage")||document),input=$("[data-diff-input]",scene.closest(".lab-stage")||document),img=$("img",scene);
   const states={
     1:{time:"Unlimited",dwell:"Long confirmation",input:"Controller-assisted",img:"../../assets/images/lumastep-bedroom-day.png",shade:.00},
@@ -110,8 +109,8 @@ $$("[data-diff-scene]").forEach(scene=>{
 });
 
 /* scrollytelling */
-$$("[data-scrolly]").forEach(root=>{
-  const steps=$$("[data-step]",root),media=$$("[data-media]",root);
+$$('[data-scrolly]').forEach(root=>{
+  const steps=$$('[data-step]',root),media=$$('[data-media]',root);
   const set=id=>{steps.forEach(s=>s.classList.toggle("active",s.dataset.step===id));media.forEach(m=>m.classList.toggle("active",m.dataset.media===id))}
   if(steps[0])set(steps[0].dataset.step);
   const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)set(e.target.dataset.step)}),{threshold:.58});
@@ -119,16 +118,16 @@ $$("[data-scrolly]").forEach(root=>{
 });
 
 /* publication filters */
-$$("[data-pub-filter]").forEach(group=>{
-  $$("[data-filter]",group).forEach(btn=>btn.addEventListener("click",()=>{
-    $$("[data-filter]",group).forEach(b=>b.classList.remove("active"));btn.classList.add("active");
-    const f=btn.dataset.filter;$$("[data-pub-status]",group).forEach(row=>row.style.display=(f==="all"||row.dataset.pubStatus===f)?"grid":"none");
+$$('[data-pub-filter]').forEach(group=>{
+  $$('[data-filter]',group).forEach(btn=>btn.addEventListener("click",()=>{
+    $$('[data-filter]',group).forEach(b=>b.classList.remove("active"));btn.classList.add("active");
+    const f=btn.dataset.filter;$$('[data-pub-status]',group).forEach(row=>row.style.display=(f==="all"||row.dataset.pubStatus===f)?"grid":"none");
   }));
 });
 
 /* environment switch */
-$$("[data-env-switch]").forEach(root=>{
-  const tabs=$$("[data-env]",root),imgs=$$("[data-env-img]",root),title=$("[data-env-title]",root),copy=$("[data-env-copy]",root);
+$$('[data-env-switch]').forEach(root=>{
+  const tabs=$$('[data-env]',root),imgs=$$('[data-env-img]',root),title=$("[data-env-title]",root),copy=$("[data-env-copy]",root);
   const data={
     sea:["Sea","Open water and horizon-dominant composition."],
     lake:["Lake","A more balanced relationship between water, mountains, and vegetation."],
@@ -142,8 +141,8 @@ $$("[data-env-switch]").forEach(root=>{
 });
 
 /* AI process */
-$$("[data-process]").forEach(root=>{
-  const steps=$$("[data-process-step]",root),imgs=$$("[data-process-img]",root);
+$$('[data-process]').forEach(root=>{
+  const steps=$$('[data-process-step]',root),imgs=$$('[data-process-img]',root);
   steps.forEach(s=>s.addEventListener("click",()=>{
     steps.forEach(x=>x.classList.remove("active"));imgs.forEach(x=>x.classList.remove("active"));
     s.classList.add("active");$(`[data-process-img="${s.dataset.processStep}"]`,root)?.classList.add("active");
@@ -151,92 +150,106 @@ $$("[data-process]").forEach(root=>{
 });
 
 /* detail hidden rationale toggles */
-$$("[data-detail-toggle]").forEach(root=>{
+$$('[data-detail-toggle]').forEach(root=>{
   const buttons=$$("button[data-copy]",root),target=$(".toggle-content",root);
   buttons.forEach(b=>b.addEventListener("click",()=>{
     buttons.forEach(x=>x.classList.remove("active"));b.classList.add("active");target.textContent=b.dataset.copy;
   }));
 });
 
-
-/* ==========================================================
-   V15 — Kinetic HELLO interaction
-   ========================================================== */
-$$("[data-hello-art]").forEach(art=>{
+/* V15 — Kinetic HELLO interaction */
+$$('[data-hello-art]').forEach(art=>{
   const letters=$$(".hello-letter",art);
   const cursor=$(".hello-cursor",art);
-
   const reset=()=>{
-    letters.forEach((el,i)=>{
-      el.style.setProperty("--tx","0px");
-      el.style.setProperty("--ty","0px");
-      el.style.setProperty("--rot","0deg");
-    });
+    letters.forEach(()=>{});
+    letters.forEach(el=>{el.style.setProperty("--tx","0px");el.style.setProperty("--ty","0px");el.style.setProperty("--rot","0deg")});
     if(cursor){cursor.style.left="50%";cursor.style.top="50%";}
   };
-
   art.addEventListener("pointermove",e=>{
     const r=art.getBoundingClientRect();
     const nx=(e.clientX-r.left)/r.width-.5;
     const ny=(e.clientY-r.top)/r.height-.5;
-
-    if(cursor){
-      cursor.style.left=(e.clientX-r.left)+"px";
-      cursor.style.top=(e.clientY-r.top)+"px";
-    }
-
+    if(cursor){cursor.style.left=(e.clientX-r.left)+"px";cursor.style.top=(e.clientY-r.top)+"px";}
     letters.forEach((el,i)=>{
       const depth=(i-2);
-      const tx=nx*(10+Math.abs(depth)*4) + depth*nx*4;
-      const ty=ny*(8+Math.abs(depth)*3) - depth*ny*2;
+      const tx=nx*(10+Math.abs(depth)*4)+depth*nx*4;
+      const ty=ny*(8+Math.abs(depth)*3)-depth*ny*2;
       const rot=nx*depth*1.4;
-      el.style.setProperty("--tx",`${tx.toFixed(1)}px`);
-      el.style.setProperty("--ty",`${ty.toFixed(1)}px`);
-      el.style.setProperty("--rot",`${rot.toFixed(2)}deg`);
+      el.style.setProperty("--tx",`${tx.toFixed(1)}px`);el.style.setProperty("--ty",`${ty.toFixed(1)}px`);el.style.setProperty("--rot",`${rot.toFixed(2)}deg`);
     });
   });
-
   art.addEventListener("pointerleave",reset);
 });
 
-
-/* ==========================================================
-   V16 — generalized kinetic word art
-   ========================================================== */
-$$("[data-brand-art]").forEach(art=>{
+/* V16 — generalized kinetic word art */
+$$('[data-brand-art]').forEach(art=>{
   const letters=$$(".brand-letter",art);
   const cursor=$(".brand-cursor",art);
-
   const reset=()=>{
-    letters.forEach(el=>{
-      el.style.setProperty("--bx","0px");
-      el.style.setProperty("--by","0px");
-      el.style.setProperty("--br","0deg");
-    });
+    letters.forEach(el=>{el.style.setProperty("--bx","0px");el.style.setProperty("--by","0px");el.style.setProperty("--br","0deg")});
     if(cursor){cursor.style.left="50%";cursor.style.top="50%";}
   };
-
   art.addEventListener("pointermove",e=>{
     const r=art.getBoundingClientRect();
     const nx=(e.clientX-r.left)/r.width-.5;
     const ny=(e.clientY-r.top)/r.height-.5;
-
-    if(cursor){
-      cursor.style.left=(e.clientX-r.left)+"px";
-      cursor.style.top=(e.clientY-r.top)+"px";
-    }
-
+    if(cursor){cursor.style.left=(e.clientX-r.left)+"px";cursor.style.top=(e.clientY-r.top)+"px";}
     letters.forEach((el,i)=>{
       const mid=(letters.length-1)/2;
       const depth=i-mid;
       const tx=nx*(7+Math.abs(depth)*2.6)+depth*nx*1.8;
       const ty=ny*(6+Math.abs(depth)*2.1)-depth*ny*1.1;
       const rot=nx*depth*.75;
-      el.style.setProperty("--bx",`${tx.toFixed(1)}px`);
-      el.style.setProperty("--by",`${ty.toFixed(1)}px`);
-      el.style.setProperty("--br",`${rot.toFixed(2)}deg`);
+      el.style.setProperty("--bx",`${tx.toFixed(1)}px`);el.style.setProperty("--by",`${ty.toFixed(1)}px`);el.style.setProperty("--br",`${rot.toFixed(2)}deg`);
     });
   });
-
   art.addEventListener("pointerleave",reset);
+});
+
+/* V17 — Mibo interactions */
+$$('[data-mibo-interaction]').forEach(root=>{
+  const modes=$$('[data-mibo-mode]',root);
+  const imgs=$$('[data-mibo-img]',root);
+  const title=$("[data-mibo-title]",root);
+  const copy=$("[data-mibo-copy]",root);
+  const state=$("[data-mibo-state]",root);
+  const content={
+    comfort:["Comfort through touch","Hand-holding turns physical contact into a deliberate interaction channel. The concept explores how a companion robot could communicate presence without relying on constant speech.","Affective contact"],
+    touch:["Acknowledge touch","Touch on the head is paired with an expressive face response, making acknowledgement visible and immediate.","Touch response"],
+    encourage:["Celebrate together","A high-five reframes encouragement as a shared physical action rather than a notification on a screen.","Social gesture"],
+    move:["Move with the user","Arm gestures accompany stretching prompts so the reminder becomes a shared embodied activity.","Movement guidance"]
+  };
+  const set=id=>{
+    modes.forEach(b=>b.classList.toggle("active",b.dataset.miboMode===id));
+    imgs.forEach(im=>im.classList.toggle("active",im.dataset.miboImg===id));
+    const d=content[id];
+    if(d){title.textContent=d[0];copy.textContent=d[1];state.textContent=d[2];}
+  };
+  modes.forEach(b=>b.addEventListener("click",()=>set(b.dataset.miboMode)));
+  set("comfort");
+});
+
+$$('[data-mibo-ui]').forEach(root=>{
+  const tabs=$$('[data-mibo-ui-tab]',root);
+  const imgs=$$('[data-mibo-ui-img]',root);
+  const title=$("[data-mibo-ui-title]",root);
+  const copy=$("[data-mibo-ui-copy]",root);
+  const status=$("[data-mibo-ui-status]",root);
+  const content={
+    comfort:["Comfort Session","A companion mode centered on hand-holding, guided breathing, gentle language, ambient light, and session timing.","Physical comfort + calming interaction"],
+    movement:["Move with Mibo","Sedentary reminders are paired with stretching, movement goals, and simple warm-up routines so prompting is linked to action.","Reminder → shared activity"],
+    emotion:["Emotion-aware interaction concept","The interface explores how camera-based affective cues could inform supportive interaction. It is presented here as a design concept, not as a claim of validated emotion-recognition accuracy.","Conceptual sensing flow"],
+    insights:["Mood Insights","A reflection layer summarizes mood patterns and support sessions, shifting the system from momentary intervention toward longer-term self-reflection.","Reflection + progress"],
+    settings:["Device & App Settings","The companion can be configured through reminder defaults, notification channels, quiet hours, pairing status, sound, brightness, and privacy controls.","Control + transparency"],
+    weekly:["Weekly Summary","A weekly view combines reminders, comfort sessions, movement streaks, emotion check-ins, and a wellness trend into a single reflection screen.","Longitudinal overview"]
+  };
+  const set=id=>{
+    tabs.forEach(b=>b.classList.toggle("active",b.dataset.miboUiTab===id));
+    imgs.forEach(im=>im.classList.toggle("active",im.dataset.miboUiImg===id));
+    const d=content[id];
+    if(d){title.textContent=d[0];copy.textContent=d[1];status.textContent=d[2];}
+  };
+  tabs.forEach(b=>b.addEventListener("click",()=>set(b.dataset.miboUiTab)));
+  set("comfort");
 });
