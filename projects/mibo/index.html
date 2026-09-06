@@ -5,6 +5,18 @@
 <meta name="theme-color" content="#080B12">
 <title>Mibo | Xin Zhang</title>
 <link rel="stylesheet" href="../../assets/css/style.css">
+
+<style>
+.mibo-sprite-frame{position:absolute;inset:0;background-image:url("../../assets/images/mibo-interaction-sheet.webp");background-repeat:no-repeat;background-size:400% 100%;opacity:0;transform:scale(1.02);transition:opacity .5s ease,transform .85s var(--ease);background-position-y:center}
+.mibo-sprite-frame.active{opacity:1;transform:scale(1)}
+.mibo-sprite-frame.s0{background-position-x:0%}.mibo-sprite-frame.s1{background-position-x:33.333%}.mibo-sprite-frame.s2{background-position-x:66.666%}.mibo-sprite-frame.s3{background-position-x:100%}
+.mibo-ui-sprite{position:absolute;inset:0;background-image:url("../../assets/images/mibo-ui-sheet.webp");background-repeat:no-repeat;background-size:600% 100%;background-position-y:center;opacity:0;transform:translateY(18px) scale(.985);transition:opacity .46s ease,transform .7s var(--ease);filter:drop-shadow(0 20px 40px rgba(78,62,154,.12));}
+.mibo-ui-sprite.active{opacity:1;transform:none}
+.mibo-ui-sprite.u0{background-position-x:0%}.mibo-ui-sprite.u1{background-position-x:20%}.mibo-ui-sprite.u2{background-position-x:40%}.mibo-ui-sprite.u3{background-position-x:60%}.mibo-ui-sprite.u4{background-position-x:80%}.mibo-ui-sprite.u5{background-position-x:100%}
+.mibo-form-sheet{width:100%;aspect-ratio:16/10;object-fit:contain;background:#0A0D14;margin-top:30px}
+.mibo-gallery-sprite{aspect-ratio:4/3;background-image:url("../../assets/images/mibo-interaction-sheet.webp");background-repeat:no-repeat;background-size:400% 100%;background-position-y:center}
+.mibo-gallery-sprite.g0{background-position-x:33.333%}.mibo-gallery-sprite.g1{background-position-x:66.666%}
+</style>
 </head><body>
 <div class="progress"></div>
 <header class="site-nav dark"><div class="nav-inner">
@@ -67,14 +79,7 @@
     <div>
       <h2 class="section-title">A soft visual language, but a deliberately articulated body.</h2>
       <p class="body-copy">The rounded body and minimal face are designed to feel approachable, while the articulated arms create a physical interaction vocabulary: holding, reaching, guiding, celebrating, and accompanying movement. The palm surfaces provide a clear contact area for touch-based interaction.</p>
-      <div class="mibo-form-grid">
-        <div class="mibo-form-main"><img src="../../assets/images/mibo-product.webp" alt="Mibo product render"></div>
-        <div class="mibo-form-detail">
-          <figure><img src="../../assets/images/mibo-palm.webp" alt="Mibo palm interaction surface"></figure>
-          <figure><img src="../../assets/images/mibo-arm.webp" alt="Mibo articulated arm design"></figure>
-        </div>
-      </div>
-      <div class="media-wide"><img src="../../assets/images/mibo-views.webp" alt="Front side and rear views of Mibo" style="object-fit:contain;background:#0A0D14"></div>
+      <img class="mibo-form-sheet" src="../../assets/images/mibo-form-sheet.webp" alt="Mibo form development showing product render, multi-angle views, palm surface, and articulated arm">
       <div class="mibo-caption">Form development includes front / side / rear views, articulated arm components, tactile palm surfaces, and a complete 3D wireframe model.</div>
     </div>
   </div>
@@ -95,10 +100,10 @@
           <button class="mibo-mode" data-mibo-mode="move"><span>04</span><strong>Move Together</strong></button>
         </div>
         <div class="mibo-scene">
-          <img class="active" data-mibo-img="comfort" src="../../assets/images/mibo-scene-hold.webp" alt="Mibo holding a user's hand">
-          <img data-mibo-img="touch" src="../../assets/images/mibo-scene-touch.webp" alt="User touching Mibo's head">
-          <img data-mibo-img="encourage" src="../../assets/images/mibo-scene-highfive.webp" alt="Mibo giving a high five">
-          <img data-mibo-img="move" src="../../assets/images/mibo-scene-move.webp" alt="Mibo accompanying a stretch movement">
+          <div class="mibo-sprite-frame s0 active" data-mibo-img="comfort" role="img" aria-label="Mibo holding a user's hand"></div>
+          <div class="mibo-sprite-frame s1" data-mibo-img="touch" role="img" aria-label="User touching Mibo's head"></div>
+          <div class="mibo-sprite-frame s2" data-mibo-img="encourage" role="img" aria-label="Mibo giving a high five"></div>
+          <div class="mibo-sprite-frame s3" data-mibo-img="move" role="img" aria-label="Mibo accompanying a stretch movement"></div>
           <div class="mibo-scene-copy">
             <div><h4 data-mibo-title>Comfort through touch</h4><p data-mibo-copy>Hand-holding turns physical contact into a deliberate interaction channel. The concept explores how a companion robot could communicate presence without relying on constant speech.</p></div>
             <div class="mibo-state" data-mibo-state>Affective contact</div>
@@ -137,12 +142,12 @@
         </div>
         <div class="mibo-ui-stage">
           <div class="mibo-phone">
-            <img class="active" data-mibo-ui-img="comfort" src="../../assets/images/mibo-ui-comfort.webp" alt="Mibo Comfort Session interface">
-            <img data-mibo-ui-img="movement" src="../../assets/images/mibo-ui-move.webp" alt="Move with Mibo interface">
-            <img data-mibo-ui-img="emotion" src="../../assets/images/mibo-ui-emotion.webp" alt="Mibo emotion-aware interaction concept">
-            <img data-mibo-ui-img="insights" src="../../assets/images/mibo-ui-insights.webp" alt="Mibo mood insights interface">
-            <img data-mibo-ui-img="settings" src="../../assets/images/mibo-ui-settings.webp" alt="Mibo device and app settings">
-            <img data-mibo-ui-img="weekly" src="../../assets/images/mibo-ui-weekly.webp" alt="Mibo weekly summary interface">
+            <div class="mibo-ui-sprite u0 active" data-mibo-ui-img="comfort" role="img" aria-label="Mibo Comfort Session interface"></div>
+            <div class="mibo-ui-sprite u1" data-mibo-ui-img="movement" role="img" aria-label="Move with Mibo interface"></div>
+            <div class="mibo-ui-sprite u2" data-mibo-ui-img="emotion" role="img" aria-label="Mibo emotion-aware interaction concept"></div>
+            <div class="mibo-ui-sprite u3" data-mibo-ui-img="insights" role="img" aria-label="Mibo mood insights interface"></div>
+            <div class="mibo-ui-sprite u4" data-mibo-ui-img="settings" role="img" aria-label="Mibo device and app settings"></div>
+            <div class="mibo-ui-sprite u5" data-mibo-ui-img="weekly" role="img" aria-label="Mibo weekly summary interface"></div>
           </div>
           <aside class="mibo-ui-explain">
             <div class="eyebrow">Current Module</div>
@@ -178,8 +183,8 @@
       <h2 class="section-title">The same form supports different social tones.</h2>
       <p class="body-copy">Expression and posture shift with the interaction context—from quiet presence to concern, encouragement, and active movement.</p>
       <div class="mibo-gallery">
-        <img src="../../assets/images/mibo-scene-open.webp" alt="Mibo in an open supportive pose">
-        <img src="../../assets/images/mibo-scene-concern.webp" alt="Mibo expressing concern during a sedentary reminder">
+        <div class="mibo-gallery-sprite g0" role="img" aria-label="Mibo responding to touch with an expressive posture"></div>
+        <div class="mibo-gallery-sprite g1" role="img" aria-label="Mibo giving an encouraging high-five gesture"></div>
       </div>
     </div>
   </div>
