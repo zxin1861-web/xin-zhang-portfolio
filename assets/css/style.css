@@ -382,6 +382,7 @@ conic-gradient(var(--accent-2) var(--p),rgba(255,255,255,.2) 0deg);color:white;d
 
 .lab-stage.active{opacity:1!important;transform:none!important}
 
+
 /* ==========================================================
    V15 — Kinetic HELLO artwork
    ========================================================== */
@@ -623,6 +624,7 @@ conic-gradient(var(--accent-2) var(--p),rgba(255,255,255,.2) 0deg);color:white;d
 @media(prefers-reduced-motion:reduce){
   .hello-letter,.hello-scan,.hello-orbit::before{animation:none!important;opacity:1!important}
 }
+
 
 /* ==========================================================
    V16 — Brand unification across all pages
@@ -1062,6 +1064,7 @@ conic-gradient(var(--accent-2) var(--p),rgba(255,255,255,.2) 0deg);color:white;d
   .brand-art-meta{font-size:7px}
   .chapter-band{padding:46px 0}
 }
+
 
 /* ==========================================================
    V17 — Mibo / HRI design exploration
